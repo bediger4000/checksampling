@@ -1,0 +1,13 @@
+df <- read.csv('run.out', sep='\t')
+f <- df$mean
+m <- mean(f)
+s <- sd(f)
+sink('r.summary')
+summary(f)
+sink()
+#png("samples_dist.png", width=750, height=600)
+hist(f, breaks=100, freq=F, main="Sample mean distribution")
+lines(density(f), col = "red", lwd = 2, xlab="distribution density")
+curve(dnorm(x, mean=m, sd=s), col="blue", lwd=2, add=T, xlab="normal distribution")
+legend("topright", c("Density", "Normal"), col=c("red", "blue"), lwd=4)
+#dev.off()
