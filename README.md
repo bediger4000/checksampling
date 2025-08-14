@@ -50,3 +50,20 @@ The blue line is the normal curve for the mean and standard deviation of
 the population.
 The red line is R's `density` function for the means of the samplings.
 I believe they're comparable as theoretic and experimental distributions.
+
+The file `run.metadata` for that population gives it a mean of 501.4,
+and a standard deviation of 288.19.
+The theoretical sample standard deviation is 48.7
+The Kurtosis of the  sample means is 2.96,
+extremely close to the kurtosis of a normal distribution.
+The file `r.summary` gives the sample means a mean of 500.1,
+very close to the population mean.
+Running the second column of the `run.out` file through GNU `datamash`:
+
+```
+$ awk 'NR>1{print $2}' run.out | datamash mean 1 sstdev 1
+500.2961        50.275935241967
+```
+
+The samplings means have a mean of 500.3 and a standard deviation of 50.3.
+That's really close to the theoretical values.
