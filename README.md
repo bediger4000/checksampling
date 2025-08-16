@@ -67,3 +67,29 @@ $ awk 'NR>1{print $2}' run.out | datamash mean 1 sstdev 1
 
 The samplings means have a mean of 500.3 and a standard deviation of 50.3.
 That's really close to the theoretical values.
+
+# Experiment with sample size
+
+```
+$ make samplesz
+$ ./samplesz
+# 100000 values in population
+# 1000 max value in population
+# Population sum 49994428.0
+# Population mean 499.9
+# Population std dev 288.624605
+sample size     min     med     max     mean    sample sdev     sdev
+15              265.6   500.3   751.0   501.4   75.7            74.5
+30              331.0   499.1   646.6   499.0   52.8            52.7
+50              363.7   500.5   600.8   498.8   40.2            40.8
+100             404.5   498.8   588.5   498.1   28.3            28.9
+500             466.1   500.8   540.7   500.0   12.6            12.9
+1000            474.5   500.6   528.0   500.2   9.0             9.1
+10000           489.1   500.2   509.6   500.0   2.9             2.9
+```
+
+Take 1000 samples of a given size, calculate some indicators about the
+1000 samples.
+The number of values in each sampe (15, 30, 50, 100...) is hardcoded.
+I wanted to see if the assertion that a "large size sample" is more
+than 30 actually worked any different.
